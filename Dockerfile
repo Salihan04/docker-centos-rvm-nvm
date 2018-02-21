@@ -1,6 +1,6 @@
 ARG centos_ver=7
 FROM centos:${centos_ver}
-LABEL name="salihan <salihan04@gmail.com>"
+LABEL maintainer="salihan <salihan04@gmail.com>"
 
 ARG ruby_ver=2.3.6
 ARG node_ver=8.9.3
@@ -23,4 +23,7 @@ RUN yum -y update \
     && /bin/bash -l -c ". ${NVM_DIR}/nvm.sh" \ 
     && /bin/bash -l -c "nvm install ${NODE_VER}" \ 
     && /bin/bash -l -c "nvm alias default ${NODE_VER}" \ 
-    && /bin/bash -l -c "nvm use default"
+    && /bin/bash -l -c "nvm use default" \ 
+    && /bin/bash -l -c "echo \"[[ -s '/usr/local/rvm/bin/rvm' ]] && . '/usr/local/rvm/bin/rvm'\" >> ~/.bashrc"
+
+ENV PATH "${PATH}:/usr/local/rvm/rubies/ruby-${RUBY_ENV}/bin"
