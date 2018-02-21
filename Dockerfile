@@ -8,7 +8,8 @@ ENV RUBY_ENV=${ruby_ver}
 ENV NVM_DIR=/usr/local/nvm
 ENV NODE_VER=${node_ver}
 ENV NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH=$NVM_DIR/versions/node/v$NODE_VERSION/bin:$PATH
+ENV PATH "${PATH}:/usr/local/nvm/versions/node/v${NODE_VER}/bin"
+ENV PATH "${PATH}:/usr/local/nvm/versions/node/v${NODE_VER}/bin/npm"
 
 RUN yum -y update \ 
     && yum install -y which gpg gcc gcc-c++ make \ 
