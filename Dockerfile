@@ -4,12 +4,13 @@ LABEL maintainer="salihan <salihan04@gmail.com>"
 
 ARG ruby_ver=2.3.6
 ARG node_ver=8.9.3
-ENV RUBY_ENV=${ruby_ver}
-ENV NVM_DIR=/usr/local/nvm
-ENV NODE_VER=${node_ver}
-ENV NODE_PATH=$NVM_DIR/v$NODE_VERSION/lib/node_modules
-ENV PATH "${PATH}:/usr/local/nvm/versions/node/v${NODE_VER}/bin"
-ENV PATH "${PATH}:/usr/local/nvm/versions/node/v${NODE_VER}/bin/npm"
+ENV RUBY_ENV=${ruby_ver} \ 
+    NVM_DIR=/usr/local/nvm \ 
+    NODE_VER=${node_ver} \ 
+    NODE_PATH=$NVM_DIR/v$NODE_VER/lib/node_modules \ 
+    PATH="${PATH}:/usr/local/nvm/versions/node/v${NODE_VER}/bin" \ 
+    PATH="${PATH}:/usr/local/nvm/versions/node/v${NODE_VER}/bin/npm" \ 
+    PATH="${PATH}:/usr/local/rvm/rubies/ruby-${RUBY_ENV}/bin"
 
 RUN yum -y update \ 
     && yum install -y which gpg gcc gcc-c++ make \ 
@@ -26,5 +27,3 @@ RUN yum -y update \
     && /bin/bash -l -c "nvm alias default ${NODE_VER}" \ 
     && /bin/bash -l -c "nvm use default" \ 
     && /bin/bash -l -c "echo \"[[ -s '/usr/local/rvm/bin/rvm' ]] && . '/usr/local/rvm/bin/rvm'\" >> ~/.bashrc"
-
-ENV PATH "${PATH}:/usr/local/rvm/rubies/ruby-${RUBY_ENV}/bin"
