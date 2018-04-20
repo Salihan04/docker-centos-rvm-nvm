@@ -13,5 +13,8 @@ docker build --build-arg centos_ver=7 --build-arg ruby_ver=2.3.6 --build-arg nod
 
 Current Image Size: 993MB
 
+## Supported tags
+- latest, 7-2.3.6-8.9.3
+
 ## ToDo
 - [ ] Optimize image
